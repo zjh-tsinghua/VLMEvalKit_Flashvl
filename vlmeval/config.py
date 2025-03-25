@@ -694,7 +694,7 @@ internvl_series = {
 }
 
 sail_series = {
-    "SAIL-VL-2B": partial(SailVL, model_path="BytedanceDouyinContent/SAIL-VL-2B")
+    "SAIL-VL-2B": partial(SailVL, model_path="/mnt/dolphinfs/ssd_pool/docker/user/hadoop-mlm/zhoujinhao03/project/sail2B_ovis2_2B_eval/VLMEvalKit/SAIL-VL-2B")
 }
 
 yivl_series = {
@@ -827,7 +827,7 @@ ovis_series = {
         Ovis1_6_Plus, model_path="AIDC-AI/Ovis1.6-Gemma2-27B"
     ),
     "Ovis2-1B": partial(Ovis2, model_path="AIDC-AI/Ovis2-1B"),
-    "Ovis2-2B": partial(Ovis2, model_path="AIDC-AI/Ovis2-2B"),
+    "Ovis2-2B": partial(Ovis2, model_path="/mnt/dolphinfs/ssd_pool/docker/user/hadoop-mlm/zhoujinhao03/project/sail2B_ovis2_2B_eval/VLMEvalKit/Ovis2-2B"),
     "Ovis2-4B": partial(Ovis2, model_path="AIDC-AI/Ovis2-4B"),
     "Ovis2-8B": partial(Ovis2, model_path="AIDC-AI/Ovis2-8B"),
     "Ovis2-16B": partial(Ovis2, model_path="AIDC-AI/Ovis2-16B"),
