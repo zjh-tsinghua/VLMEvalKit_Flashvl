@@ -199,3 +199,6 @@ eval_scripts/
 log/
 model/
 outputs/
+Model/
+score_prc.py
+zjh_eavl.sh

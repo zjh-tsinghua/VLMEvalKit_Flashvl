@@ -827,7 +827,7 @@ ovis_series = {
         Ovis1_6_Plus, model_path="AIDC-AI/Ovis1.6-Gemma2-27B"
     ),
     "Ovis2-1B": partial(Ovis2, model_path="AIDC-AI/Ovis2-1B"),
-    "Ovis2-2B": partial(Ovis2, model_path="/mnt/dolphinfs/ssd_pool/docker/user/hadoop-mlm/zhoujinhao03/project/sail2B_ovis2_2B_eval/VLMEvalKit/Ovis2-2B"),
+    "Ovis2-2B": partial(Ovis2, model_path="/mnt/dolphinfs/ssd_pool/docker/user/hadoop-mlm/zhoujinhao03/project/zjh_vlmeval/VLMEvalKit/Model/Ovis2-2B"),
     "Ovis2-4B": partial(Ovis2, model_path="AIDC-AI/Ovis2-4B"),
     "Ovis2-8B": partial(Ovis2, model_path="AIDC-AI/Ovis2-8B"),
     "Ovis2-16B": partial(Ovis2, model_path="AIDC-AI/Ovis2-16B"),
@@ -984,6 +984,14 @@ qwen2vl_series = {
         max_pixels=16384 * 28 * 28,
         use_custom_prompt=False,
     ),
+    "Qwen2.5-VL-32B-Instruct": partial(
+        Qwen2VLChat,
+        model_path="Model/Qwen2.5-VL-32B-Instruct",
+        min_pixels=1280 * 28 * 28,
+        max_pixels=16384 * 28 * 28,
+        use_custom_prompt=False,
+    ),
+    
     "Qwen2.5-VL-72B-Instruct-AWQ": partial(
         Qwen2VLChat,
         model_path="Qwen/Qwen2.5-VL-72B-Instruct-AWQ",
@@ -997,6 +1005,14 @@ qwen2vl_series = {
         min_pixels=1280*28*28, 
         max_pixels=16384*28*28, 
         use_custom_prompt=False),
+    
+    "Qwen2.5-Omni-7B": partial(
+        Qwen2VLOmniChat,
+        model_path="Model/Qwen2.5-Omni-7B",
+        min_pixels=1280 * 28 * 28,
+        max_pixels=16384 * 28 * 28,
+        use_custom_prompt=False,
+    ),
 }
 
 slime_series = {
