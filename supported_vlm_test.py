@@ -1,5 +1,5 @@
 from vlmeval.config import supported_VLM
-MODEL_NAME = "Qwen2.5-Omni-7B"
+MODEL_NAME = "Llama-4-Scout-17B-16E-Instruct"
 model = supported_VLM[MODEL_NAME]()
 # 前向单张图片
 ret = model.generate(['assets/apple.jpg', 'What is in this image?'])

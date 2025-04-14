@@ -185,7 +185,7 @@ def main():
                 supported_VLM[k] = v
 
     if world_size > 1:
-        local_rank = os.environ.get('LOCAL_RANK', 0)
+        local_rank = int(os.environ.get('LOCAL_RANK', 0))
         torch.cuda.set_device(int(local_rank))
         dist.init_process_group(
             backend='nccl',

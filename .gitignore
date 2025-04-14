@@ -202,3 +202,4 @@ outputs/
 Model/
 score_prc.py
 zjh_eavl.sh
+torch*

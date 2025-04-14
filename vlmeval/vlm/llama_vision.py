@@ -48,7 +48,7 @@ class llama_vision(BaseModel):
 
     def __init__(self, model_path='meta-llama/Llama-3.2-11B-Vision-Instruct', **kwargs):
         try:
-            from transformers import MllamaForConditionalGeneration, AutoProcessor
+            from transformers import MllamaForConditionalGeneration, AutoProcessor, Llama4ForConditionalGeneration
         except Exception as e:
             logging.critical('Please install transformers>=4.45.0 before using llama_vision.')
             raise e
@@ -70,6 +70,13 @@ class llama_vision(BaseModel):
                 torch_dtype=torch.bfloat16,
                 device_map=device_map,
             ).eval()
+        elif '17b' in model_path.lower():
+            self.model = Llama4ForConditionalGeneration.from_pretrained(
+                model_path,
+                device_map="auto",
+                # attn_implementation="flash_attention_2",
+                torch_dtype=torch.bfloat16,
+            )
         else:
             self.model = MllamaForConditionalGeneration.from_pretrained(
                 model_path,
@@ -131,7 +138,7 @@ class llama_vision(BaseModel):
                 f'Question: {question} Options: {options} Indicate the correct answer at the end.'
             )
             for i in range(len(tgt_path)):
-                prompt = prompt.replace(f'<image {i+1}>', '')
+                prompt = prompt.replace(f'<image {i + 1}>', '')
         elif listinstr(['MathVista'], dataset):
             self.kwargs['max_new_tokens'] = 2048
             prompt = f'{question}'
@@ -189,12 +196,20 @@ class llama_vision(BaseModel):
         image = Image.open(image_path)
         messages = [
             {'role': 'user', 'content': [
-                {'type': 'image'},
+                {'type': 'image', 'image':image},
                 {'type': 'text', 'text': prompt}
             ]}
         ]
-        input_text = self.processor.apply_chat_template(messages, add_generation_prompt=True)
-        inputs = self.processor(image, input_text, return_tensors='pt').to(self.device)
+        # input_text = self.processor.apply_chat_template(messages, add_generation_prompt=True)
+        # inputs = self.processor(image, input_text, return_tensors='pt').to(self.device)
+        inputs = self.processor.apply_chat_template(
+            messages,
+            add_generation_prompt=True,
+            tokenize=True,
+            return_dict=True,
+            return_tensors="pt",
+        ).to(self.device)
+
         if not self.use_custom_prompt(dataset):
             if dataset is not None and DATASET_TYPE(dataset) in ['MCQ', 'Y/N']:
                 self.kwargs['max_new_tokens'] = 128
@@ -202,5 +217,6 @@ class llama_vision(BaseModel):
                 self.kwargs['max_new_tokens'] = 512
         if "cot" in self.model_name or "CoT" in self.model_name:
             self.kwargs['max_new_tokens'] = 2048
-        output = self.model.generate(**inputs, **self.kwargs)
-        return self.processor.decode(output[0][inputs['input_ids'].shape[1]:]).replace('<|eot_id|>', '')
+        # output = self.model.generate(**inputs, **self.kwargs)
+        output = self.model.generate(**inputs, max_new_tokens=256)
+        return self.processor.decode(output[0][inputs['input_ids'].shape[1]:]).replace('<|eot|>', '')
