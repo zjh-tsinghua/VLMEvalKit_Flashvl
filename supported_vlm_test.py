@@ -1,5 +1,7 @@
+import sys
 from vlmeval.config import supported_VLM
-MODEL_NAME = "Llama-4-Scout-17B-16E-Instruct"
+
+MODEL_NAME = sys.argv[1] 
 model = supported_VLM[MODEL_NAME]()
 # 前向单张图片
 ret = model.generate(['assets/apple.jpg', 'What is in this image?'])

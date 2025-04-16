@@ -203,3 +203,5 @@ Model/
 score_prc.py
 zjh_eavl.sh
 torch*
+supported_vlm_test.py
+hope/

@@ -31,7 +31,7 @@ from .omnilmm import OmniLMM12B
 from .open_flamingo import OpenFlamingo
 from .pandagpt import PandaGPT
 from .qwen_vl import QwenVL, QwenVLChat
-from .qwen2_vl import Qwen2VLChat, Qwen2VLOmniChat
+from .qwen2_vl import Qwen2VLChat
 from .transcore_m import TransCoreM
 from .visualglm import VisualGLM
 from .xcomposer import (
@@ -77,6 +77,7 @@ from .slime import SliME
 from .mplug_owl3 import mPLUG_Owl3
 from .pixtral import Pixtral
 from .llama_vision import llama_vision
+from .llama4 import llama4
 from .molmo import molmo
 from .points import POINTS, POINTSV15
 from .nvlm import NVLM
@@ -91,3 +92,6 @@ from .ola import Ola
 from .ursa import UrsaChat
 from .vlm_r1 import VLMR1Chat
 from .aki import AKI
+# from .ristretto import Ristretto
+# from .vlaa_thinker import VLAAThinkerChat
+from .kimi_vl import KimiVL
