@@ -195,13 +195,13 @@ assets/LOGO.png
 api_list.txt
 vlmeval/gemini_tmp.py
 
-eval_scripts/
+# eval_scripts/
 log/
 model/
 outputs/
 Model/
-score_prc.py
-zjh_eavl.sh
+# score_prc.py
+# zjh_eavl.sh
 torch*
 supported_vlm_test.py
 hope/

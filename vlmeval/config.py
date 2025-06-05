@@ -95,6 +95,8 @@ o1_apis = {
 }
 
 api_models = {
+    "triton_api_model": TritonAPIModel,
+    
     # GPT
     "GPT4V": partial(
         GPT4V,
@@ -179,7 +181,17 @@ api_models = {
     ),
     "GPT4o_MINI": partial(
         GPT4V,
-        model="gpt-4o-mini-2024-07-18",
+        model="gpt-4o-mini",
+        temperature=0,
+        img_size=-1,
+        img_detail="high",
+        retry=10,
+        verbose=False,
+    ),
+    "gpt-4.1-mini-2025-04-14": partial(
+        GPT4V,
+        # model="gpt-4.1-mini-2025-04-14",
+        model="gpt-4.1-mini",
         temperature=0,
         img_size=-1,
         img_detail="high",
@@ -570,7 +582,7 @@ llava_series = {
     "llava_onevision_qwen2_72b_ov": partial(
         LLaVA_OneVision, model_path="lmms-lab/llava-onevision-qwen2-72b-ov-sft"
     ),
-    "Aquila-VL-2B": partial(LLaVA_OneVision, model_path="BAAI/Aquila-VL-2B-llava-qwen"),
+    "Aquila-VL-2B-llava-qwen": partial(LLaVA_OneVision, model_path="Model/Aquila-VL-2B-llava-qwen"),
     "llava_video_qwen2_7b": partial(
         LLaVA_OneVision, model_path="lmms-lab/LLaVA-Video-7B-Qwen2"
     ),
@@ -757,7 +769,9 @@ internvl3 = {
 }
 
 sail_series = {
-    "SAIL-VL-2B": partial(SailVL, model_path="BytedanceDouyinContent/SAIL-VL-2B")
+    "SAIL-VL-2B": partial(SailVL, model_path="BytedanceDouyinContent/SAIL-VL-2B"),
+    "SAIL-VL-1d5-2B": partial(SailVL, model_path="Model/SAIL-VL-1d5-2B")
+ 
 }
 
 # ristretto_series = {
@@ -816,7 +830,7 @@ smolvlm_series = {
     "SmolVLM2-500M": partial(
         SmolVLM2, model_path="HuggingFaceTB/SmolVLM2-500M-Video-Instruct"
     ),
-    "SmolVLM2": partial(SmolVLM2, model_path="HuggingFaceTB/SmolVLM2-2.2B-Instruct"),
+    "SmolVLM2-2.2B-Instruct": partial(SmolVLM2, model_path="Model/SmolVLM2-2.2B-Instruct"),
 }
 
 instructblip_series = {
